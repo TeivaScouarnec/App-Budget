@@ -16,7 +16,24 @@ _global_script_class_icons={
 [application]
 
 config/name="App Budget"
+run/main_scene="res://Scn/Home.tscn"
 config/icon="res://icon.png"
+
+[autoload]
+
+FileUser="*res://Scn/Scripts/FileUser.gd"
+Functions="*res://Scn/Scripts/Functions.gd"
+
+[display]
+
+window/size/width=720
+window/size/height=1280
+window/size/test_width=288
+window/size/test_height=512
+window/dpi/allow_hidpi=true
+window/handheld/orientation="portrait"
+window/stretch/mode="viewport"
+window/stretch/aspect="expand"
 
 [rendering]
 
