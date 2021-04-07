@@ -1,17 +1,19 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Font/ARIAL.TTF" type="DynamicFontData" id=1]
 [ext_resource path="res://Scn/Scripts/About.gd" type="Script" id=2]
+[ext_resource path="res://Scn/img/UI About.png" type="Texture" id=3]
+[ext_resource path="res://Font/Comfortaa-Regular.ttf" type="DynamicFontData" id=4]
+
+[sub_resource type="DynamicFont" id=3]
+size = 32
+font_data = ExtResource( 4 )
 
 [sub_resource type="DynamicFont" id=1]
-size = 64
-font_data = ExtResource( 1 )
-
-[sub_resource type="DynamicFont" id=2]
 size = 35
 font_data = ExtResource( 1 )
 
-[sub_resource type="DynamicFont" id=3]
+[sub_resource type="DynamicFont" id=2]
 size = 40
 font_data = ExtResource( 1 )
 
@@ -24,6 +26,7 @@ __meta__ = {
 }
 
 [node name="BG" type="Panel" parent="."]
+modulate = Color( 0, 0, 0, 0.921569 )
 self_modulate = Color( 0, 0, 0, 1 )
 margin_right = 720.0
 margin_bottom = 1280.0
@@ -31,38 +34,41 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Text" type="Label" parent="."]
-margin_left = 144.0
-margin_top = 400.0
-margin_right = 566.0
-margin_bottom = 772.0
-custom_fonts/font = SubResource( 1 )
-text = "Développé par
-Sheeplip
+[node name="UI About" type="Sprite" parent="."]
+position = Vector2( 360, 632 )
+texture = ExtResource( 3 )
 
-avec le moteur
-Godot Engine"
-align = 1
-valign = 1
+[node name="Erase" type="Button" parent="."]
+margin_left = 56.0
+margin_top = 592.0
+margin_right = 648.0
+margin_bottom = 664.0
+custom_fonts/font = SubResource( 3 )
+text = "Effacer la sauvegarde"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="."]
-margin_left = 32.0
-margin_top = 1200.0
-margin_right = 242.0
-margin_bottom = 1240.0
-custom_fonts/font = SubResource( 2 )
-text = "Ver Alpha 0.1"
+[node name="Version" type="Label" parent="."]
+margin_left = 56.0
+margin_top = 1192.0
+margin_right = 266.0
+margin_bottom = 1232.0
+custom_fonts/font = SubResource( 1 )
+text = "Ver Alpha 0.2"
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Close" type="Button" parent="."]
-margin_left = 656.0
-margin_right = 720.0
-margin_bottom = 64.0
-custom_fonts/font = SubResource( 3 )
+margin_left = 608.0
+margin_top = 32.0
+margin_right = 672.0
+margin_bottom = 96.0
+custom_fonts/font = SubResource( 2 )
 text = "X"
 __meta__ = {
 "_edit_use_anchors_": false
 }
+[connection signal="pressed" from="Erase" to="." method="_on_Erase_pressed"]
 [connection signal="pressed" from="Close" to="." method="_on_Close_pressed"]

@@ -1,7 +1,7 @@
 extends Control
 
 var SoldAmount : Label
-var ExpenseAmount : SpinBox
+var ExpenseAmount : LineEdit
 var History : RichTextLabel
 
 func _ready():
@@ -13,17 +13,17 @@ func _ready():
 	
 	Functions.Balance()
 	SoldAmount.text = ""
-	SoldAmount.text = str(FileUser.Balance_Value) + "EUR"
+	SoldAmount.text = str(FileUser.BalanceValue) + "EUR"
 	
 	History.clear()
 	History.text = str(Functions.SetHistory())
 	
 
 func _on_Add_pressed():
-	Functions.Add_Expense("Dépense Rapide",ExpenseAmount.value)
+	Functions.Add_Expense("Dépense Rapide", ExpenseAmount.CheckText())
 	Functions.Balance()
-	SoldAmount.text = str(FileUser.Balance_Value) + "EUR"
-	ExpenseAmount.value = 0
+	SoldAmount.text = str(FileUser.BalanceValue) + "EUR"
+	ExpenseAmount.text = ""
 	History.clear()
 	History.text = str(Functions.SetHistory())
 
@@ -35,16 +35,7 @@ func _on_RecipeScn_pressed():
 	
 func Update():
 	print ("Emit")
-	SoldAmount.text = str(FileUser.Balance_Value) + "EUR"
-	
-	History.clear()
-	History.text = str(Functions.SetHistory())
-
-func _on_Clear_pressed():
-	FileUser.Clear()
-	Functions.Balance()
-	SoldAmount.text = ""
-	SoldAmount.text = str(FileUser.Balance_Value) + "EUR"
+	SoldAmount.text = str(FileUser.BalanceValue) + "EUR"
 	
 	History.clear()
 	History.text = str(Functions.SetHistory())
@@ -59,3 +50,5 @@ func _on_About_pressed():
 	var ScnLoad = preload("res://Scn/About.tscn")
 	var ScnNew = ScnLoad.instance()
 	add_child(ScnNew)
+	ScnNew.connect("Done",self,"Update")
+

@@ -1,63 +1,40 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Font/ARIAL.TTF" type="DynamicFontData" id=1]
 [ext_resource path="res://Scn/Scripts/Expense.gd" type="Script" id=2]
+[ext_resource path="res://Scn/Scripts/EditText.gd" type="Script" id=3]
+[ext_resource path="res://Scn/img/UI Expense.png" type="Texture" id=4]
+[ext_resource path="res://Font/Comfortaa-Regular.ttf" type="DynamicFontData" id=5]
+[ext_resource path="res://Font/Comfortaa-Light.ttf" type="DynamicFontData" id=6]
 
 [sub_resource type="DynamicFont" id=1]
-size = 55
-font_data = ExtResource( 1 )
+size = 32
+font_data = ExtResource( 6 )
 
 [sub_resource type="DynamicFont" id=2]
-size = 64
-outline_size = 12
-outline_color = Color( 0, 0, 0, 1 )
-font_data = ExtResource( 1 )
+size = 55
+font_data = ExtResource( 5 )
 
 [sub_resource type="DynamicFont" id=3]
-size = 60
-outline_size = 12
-outline_color = Color( 0, 0, 0, 1 )
+size = 33
 font_data = ExtResource( 1 )
 
 [sub_resource type="DynamicFont" id=4]
 size = 32
-font_data = ExtResource( 1 )
+font_data = ExtResource( 5 )
 
-[sub_resource type="Theme" id=5]
-default_font = SubResource( 4 )
-
-[sub_resource type="DynamicFont" id=6]
-size = 32
-font_data = ExtResource( 1 )
-
-[sub_resource type="DynamicFont" id=7]
-size = 34
-font_data = ExtResource( 1 )
-
-[sub_resource type="DynamicFont" id=8]
-size = 33
-font_data = ExtResource( 1 )
-
-[sub_resource type="DynamicFont" id=9]
-size = 57
-outline_size = 12
-outline_color = Color( 0, 0, 0, 1 )
-font_data = ExtResource( 1 )
-
-[sub_resource type="DynamicFont" id=10]
+[sub_resource type="DynamicFont" id=5]
 size = 36
 font_data = ExtResource( 1 )
 
-[sub_resource type="Theme" id=11]
-default_font = SubResource( 10 )
+[sub_resource type="Theme" id=6]
+default_font = SubResource( 5 )
 
-[sub_resource type="DynamicFont" id=12]
-size = 64
-outline_size = 12
-outline_color = Color( 0, 0, 0, 1 )
-font_data = ExtResource( 1 )
+[sub_resource type="DynamicFont" id=7]
+size = 33
+font_data = ExtResource( 5 )
 
-[sub_resource type="DynamicFont" id=13]
+[sub_resource type="DynamicFont" id=8]
 size = 40
 font_data = ExtResource( 1 )
 
@@ -66,152 +43,82 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 2 )
 __meta__ = {
+"_edit_lock_": true,
 "_edit_use_anchors_": false
 }
 
 [node name="BG" type="Panel" parent="."]
+modulate = Color( 0, 0, 0, 0.921569 )
 self_modulate = Color( 0, 0, 0, 1 )
 margin_right = 720.0
 margin_bottom = 1280.0
 __meta__ = {
+"_edit_lock_": true,
 "_edit_use_anchors_": false
 }
 
-[node name="Sold" type="Panel" parent="."]
-margin_left = 64.0
-margin_top = 128.0
-margin_right = 640.0
-margin_bottom = 232.0
+[node name="UI Box expense" type="Sprite" parent="."]
+position = Vector2( 360, 648 )
+texture = ExtResource( 4 )
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_lock_": true
 }
 
-[node name="Amount" type="Label" parent="Sold"]
-margin_top = 40.0
-margin_right = 576.0
-margin_bottom = 104.0
-custom_fonts/font = SubResource( 1 )
-text = "EUR"
-align = 1
-valign = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Title" type="Label" parent="Sold"]
-margin_left = 104.0
-margin_top = -48.0
-margin_right = 466.0
-margin_bottom = 24.0
-custom_fonts/font = SubResource( 2 )
-text = "Solde Actuel"
-align = 1
-valign = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Expense" type="Panel" parent="."]
-margin_left = 64.0
-margin_top = 360.0
-margin_right = 640.0
-margin_bottom = 472.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Amount" type="Label" parent="Expense"]
-margin_top = 48.0
-margin_right = 576.0
-margin_bottom = 110.0
-custom_fonts/font = SubResource( 1 )
-text = "EUR"
-align = 1
-valign = 1
-
-[node name="Title" type="Label" parent="Expense"]
-margin_left = -32.0
-margin_top = -48.0
-margin_right = 621.0
-margin_bottom = 24.0
-custom_fonts/font = SubResource( 3 )
-text = "Montant des dépenses"
-align = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="ExpensePanel" type="Panel" parent="."]
-margin_left = 72.0
+[node name="ExpensePanel" type="Control" parent="."]
+margin_left = 80.0
 margin_top = 552.0
-margin_right = 648.0
+margin_right = 656.0
 margin_bottom = 832.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="Amount" type="SpinBox" parent="ExpensePanel"]
-margin_left = 48.0
-margin_top = 184.0
-margin_right = 224.0
-margin_bottom = 264.0
-theme = SubResource( 5 )
-max_value = 9999.0
-step = 0.0
-align = 1
-suffix = "EUR"
+[node name="Amount" type="LineEdit" parent="ExpensePanel"]
+margin_left = -16.0
+margin_top = -8.0
+margin_right = 216.0
+margin_bottom = 56.0
+custom_fonts/font = SubResource( 1 )
+script = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Add" type="Button" parent="ExpensePanel"]
-margin_left = 320.0
-margin_top = 192.0
-margin_right = 384.0
-margin_bottom = 256.0
-custom_fonts/font = SubResource( 6 )
-text = "+"
-
-[node name="Remove" type="Button" parent="ExpensePanel"]
-margin_left = 440.0
-margin_top = 192.0
-margin_right = 504.0
-margin_bottom = 256.0
-custom_fonts/font = SubResource( 7 )
-text = "-"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Text" type="LineEdit" parent="ExpensePanel"]
-margin_left = 56.0
-margin_top = 72.0
-margin_right = 504.0
-margin_bottom = 144.0
-custom_fonts/font = SubResource( 8 )
-align = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Title" type="Label" parent="ExpensePanel"]
-margin_left = -88.0
-margin_top = -32.0
-margin_right = 648.0
+margin_left = 352.0
+margin_top = -48.0
+margin_right = 448.0
 margin_bottom = 40.0
-custom_fonts/font = SubResource( 9 )
-text = "AJout/retrait d'un montant"
-align = 1
-valign = 1
+custom_fonts/font = SubResource( 2 )
+text = "+"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ExpenseHistory" type="Panel" parent="."]
+[node name="Name" type="LineEdit" parent="ExpensePanel"]
+margin_left = 56.0
+margin_top = -216.0
+margin_right = 504.0
+margin_bottom = -144.0
+custom_fonts/font = SubResource( 3 )
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Undo" type="Button" parent="ExpensePanel"]
+margin_left = 472.0
+margin_top = -48.0
+margin_right = 568.0
+margin_bottom = 40.0
+custom_fonts/font = SubResource( 4 )
+text = "Undo"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ExpenseHistory" type="Control" parent="."]
 margin_left = 64.0
-margin_top = 904.0
+margin_top = 784.0
 margin_right = 648.0
-margin_bottom = 1240.0
+margin_bottom = 1120.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -221,30 +128,23 @@ margin_left = 16.0
 margin_top = 24.0
 margin_right = 568.0
 margin_bottom = 352.0
-theme = SubResource( 11 )
+theme = SubResource( 6 )
+custom_fonts/normal_font = SubResource( 7 )
 scroll_following = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Title" type="Label" parent="ExpenseHistory"]
-margin_top = -40.0
-margin_right = 584.0
-margin_bottom = 32.0
-custom_fonts/font = SubResource( 12 )
-text = "Historique"
-align = 1
-valign = 1
-
 [node name="Close" type="Button" parent="."]
-margin_left = 640.0
-margin_right = 720.0
-margin_bottom = 72.0
-custom_fonts/font = SubResource( 13 )
+margin_left = 600.0
+margin_top = 48.0
+margin_right = 680.0
+margin_bottom = 120.0
+custom_fonts/font = SubResource( 8 )
 text = "X"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 [connection signal="pressed" from="ExpensePanel/Add" to="." method="_on_Add_pressed"]
-[connection signal="pressed" from="ExpensePanel/Remove" to="." method="_on_Remove_pressed"]
+[connection signal="pressed" from="ExpensePanel/Undo" to="." method="_on_Undo_pressed"]
 [connection signal="pressed" from="Close" to="." method="_on_Close_pressed"]

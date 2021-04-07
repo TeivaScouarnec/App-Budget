@@ -4,39 +4,50 @@ func Add_Recipe(name,amount): #Ajoute une recette
 	var RecipeName = name
 	var RecipeAmount = amount
 	var RecipeText = "Recette: " + str(RecipeName) + ", Montant: +" + str(RecipeAmount) + ", " + str(GetDateEnter())
-	FileUser.Recipe_Value += RecipeAmount
-	FileUser.Recipe_List.append(RecipeText)
+	FileUser.RecipeValue += RecipeAmount
+	FileUser.RecipeAmount.append(RecipeAmount)
+	FileUser.RecipeList.append(RecipeText)
 	FileUser.History.append(RecipeText)
 	
-func Remove_Recipe(name,amount): #déduit une recette
-	var RecipeName = name
-	var RecipeAmount = amount
-	var RecipeText = "Recette: " + str(RecipeName) + ", Montant: -" + str(RecipeAmount) + ", " + str(GetDateEnter())
-	FileUser.Recipe_Value -= RecipeAmount
-	FileUser.Recipe_List.append(RecipeText)
-	FileUser.History.append(RecipeText)
+func Remove_Recipe(): #déduit une recette
+	if FileUser.RecipeAmount == [] or FileUser.RecipeList == []:
+		print ("Non Exécuté")
+		return
+	
+	var LastAmount = FileUser.RecipeAmount.back()
+	FileUser.RecipeList.pop_back()
+	FileUser.History.pop_back()
+	FileUser.RecipeValue -= float(LastAmount)
+	FileUser.RecipeAmount.pop_back()
 	
 func Add_Expense(name,amount): #ajoute une dépense
 	var ExpenseName = name
 	var ExpenseAmount = amount
 	var ExpenseText = "Dépense: " + str(ExpenseName) + ", Montant: -" + str(ExpenseAmount) + ", " + str(GetDateEnter())
-	FileUser.Expense_Value += ExpenseAmount
-	FileUser.Expense_List.append(ExpenseText)
+	FileUser.ExpenseValue += ExpenseAmount
+	FileUser.ExpenseAmount.append(ExpenseAmount)
+	FileUser.ExpenseList.append(ExpenseText)
 	FileUser.History.append(ExpenseText)
 	
-func Remove_Expense(name,amount): #réduit une dépense
-	var ExpenseName = name
-	var ExpenseAmount = amount
-	var ExpenseText = "Dépense: " + str(ExpenseName) + ", Montant: +" + str(ExpenseAmount) + ", " + str(GetDateEnter())
-	FileUser.Expense_Value -= ExpenseAmount
-	FileUser.Expense_List.append(ExpenseText)
-	FileUser.History.append(ExpenseText)
+func Remove_Expense(): #réduit une dépense
+	if FileUser.ExpenseAmount == [] or FileUser.ExpenseList == []:
+		print ("Non Exécuté")
+		return
+	
+	var LastAmount = FileUser.ExpenseAmount.back()
+	FileUser.ExpenseList.pop_back()
+	FileUser.History.pop_back()
+	FileUser.ExpenseValue -= float(LastAmount)
+	FileUser.ExpenseAmount.pop_back()
 	
 func Balance(): #calcule le solde total
-	FileUser.Balance_Value = 0
-	FileUser.Balance_Value += FileUser.Recipe_Value
-	FileUser.Balance_Value -= FileUser.Expense_Value
-	FileUser.Balance_Value -= FileUser.Taxes_Value
+	print (FileUser.BalanceValue)
+	FileUser.BalanceValue = 0
+	FileUser.BalanceValue += FileUser.RecipeValue
+	FileUser.BalanceValue -= FileUser.ExpenseValue
+	FileUser.BalanceValue -= FileUser.TaxesValue
+	FileUser.BalanceValue = stepify(FileUser.BalanceValue,0.001)
+	print (FileUser.BalanceValue)
 	FileUser.Save_File()
 
 func GetDateEnter(): #Obtient la date
@@ -53,14 +64,14 @@ func SetHistory(): #Rajoute des entrées dans l'historique général
 	
 func SetRecipeHistory(): #Ajoute des entrées dans l'historique des recettes
 	var HistoryText : String
-	for obj in FileUser.Recipe_List:
+	for obj in FileUser.RecipeList:
 		HistoryText += str(obj) + "\n"
 	
 	return HistoryText
 
 func SetExpenseHistory(): #Ajoute des entrées dans l'historique des dépenses
 	var HistoryText : String
-	for obj in FileUser.Expense_List:
+	for obj in FileUser.ExpenseList:
 		HistoryText += str(obj) + "\n"
 	
 	return HistoryText

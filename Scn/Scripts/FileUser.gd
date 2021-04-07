@@ -1,14 +1,18 @@
 extends Node
 
-var Recipe_Value : float = 0
-var Expense_Value : float = 0
-var Balance_Value : float = 0
-var Taxes_Value : float = 0
+var RecipeValue : float = 0
+var ExpenseValue : float = 0
+var BalanceValue : float = 0
+var TaxesValue : float = 0
 
-var Recipe_List : Array
-var Expense_List : Array
-var Taxes_List : Array
-var History : Array
+var RecipeList : Array = []
+var ExpenseList : Array = []
+var TaxesList : Array = []
+var History : Array = []
+
+var RecipeAmount : Array = []
+var ExpenseAmount : Array = []
+var TaxesAmount : Array = []
 
 var CurrentDate
 
@@ -16,46 +20,86 @@ func _ready():
 	CurrentDate = Functions.GetDateEnter()
 
 func Save_File():
+	var dir = Directory.new()
+	dir.open("user://")
+	if !dir.dir_exists("GdBugdet"):
+		dir.make_dir("GdBugdet")
+	
 	var Save_dict = {
 		"FileName" : get_filename(),
-		"MyRecipeAmount" : Recipe_Value,
-		"MyExpenseAmount" : Expense_Value,
-		"MyTaxesAmount" : Taxes_Value,
-		"MyRecipeHistory" : Recipe_List,
-		"MyExpenseHistory" : Expense_List,
-		"MyTaxesHistory" : Taxes_List,
+		"MyRecipeAmount" : RecipeValue,
+		"MyExpenseAmount" : ExpenseValue,
+		"MyTaxesAmount" : TaxesValue,
+		"MyRecipeHistory" : RecipeList,
+		"MyExpenseHistory" : ExpenseList,
+		"MyTaxesHistory" : TaxesList,
+		"MyExpenseList" : ExpenseAmount,
+		"MyTaxesList" : TaxesAmount,
 		"MyHistory" : History,
 		"LastDate" : CurrentDate
 	}
 	var Save_File = File.new()
-	Save_File.open("res://User/UserSave.save",File.WRITE)
+	Save_File.open("user://GdBugdet/UserSave.save",File.WRITE)
 	Save_File.store_line(to_json(Save_dict))
 	Save_File.close()
 	print ("Save File")
 
 func Load_File():
 	var Save_file = File.new()
-	if not Save_file.file_exists("res://User/UserSave.save"):
+	if not Save_file.file_exists("user://GdBugdet/UserSave.save"):
 		return
-	Save_file.open("res://User/UserSave.save",File.READ)
+	Save_file.open("user://GdBugdet/UserSave.save",File.READ)
 	var File_data = parse_json(Save_file.get_line())
 	var New_Object = load(File_data["FileName"])
-	Recipe_Value = File_data["MyRecipeAmount"]
-	Expense_Value = File_data["MyExpenseAmount"]
-	Taxes_Value = File_data["MyTaxesAmount"]
-	Recipe_List = File_data["MyRecipeHistory"]
-	Expense_List = File_data["MyExpenseHistory"]
-	Taxes_List = File_data["MyTaxesHistory"]
+	RecipeValue = File_data["MyRecipeAmount"]
+	ExpenseValue = File_data["MyExpenseAmount"]
+	TaxesValue = File_data["MyTaxesAmount"]
+	RecipeList = File_data["MyRecipeHistory"]
+	ExpenseList = File_data["MyExpenseHistory"]
+	TaxesList = File_data["MyTaxesHistory"]
 	History = File_data["MyHistory"]
+	TaxesAmount = File_data["MyTaxesList"]
+	ExpenseAmount = File_data["MyExpenseList"]
 	Save_file.close()
 	
+func list_files_in_directory():
+	var files = []
+	var dir = Directory.new()
+	dir.open("user://GdBugdet/")
+	dir.list_dir_begin()
+
+	while true:
+		var file = dir.get_next()
+		if file == "":
+			break
+		elif not file.begins_with("."):
+			files.append(file)
+
+	dir.list_dir_end()
+
+	return files
+	
 func Clear():
-	Recipe_Value = 0
-	Expense_Value = 0
-	Balance_Value  = 0
-	Taxes_Value = 0
-	Recipe_List = []
-	Expense_List = []
-	Taxes_List = []
+	var Files = list_files_in_directory()
+		
+	print (Files)
+	
+	if !Files.empty():
+		for file in Files:
+			var Dir = Directory.new()
+			Dir.remove("user://GdBugdet/" + str(file))
+			print ("Delete")
+
+		
+	RecipeValue = 0
+	ExpenseValue = 0
+	BalanceValue  = 0
+	TaxesValue = 0
+	RecipeList = []
+	ExpenseList = []
+	TaxesList = []
 	History = []
-	Save_File()
+	ExpenseAmount = []
+	TaxesAmount = []
+	
+	print (Files)
