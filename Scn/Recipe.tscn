@@ -1,6 +1,6 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=13 format=2]
 
-[ext_resource path="res://Font/ARIAL.TTF" type="DynamicFontData" id=1]
+[ext_resource path="res://Scn/UI_Elements/History.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scn/Scripts/Recipe.gd" type="Script" id=2]
 [ext_resource path="res://Scn/Scripts/EditText.gd" type="Script" id=3]
 [ext_resource path="res://Font/Comfortaa-Regular.ttf" type="DynamicFontData" id=4]
@@ -10,31 +10,27 @@
 size = 54
 font_data = ExtResource( 4 )
 
-[sub_resource type="DynamicFont" id=2]
-size = 33
-font_data = ExtResource( 1 )
+[sub_resource type="DynamicFontData" id=2]
+font_path = "res://Font/ARIAL.TTF"
 
 [sub_resource type="DynamicFont" id=3]
+size = 33
+font_data = SubResource( 2 )
+
+[sub_resource type="DynamicFont" id=4]
 size = 32
-font_data = ExtResource( 1 )
+font_data = SubResource( 2 )
 
-[sub_resource type="Theme" id=4]
-default_font = SubResource( 3 )
+[sub_resource type="Theme" id=5]
+default_font = SubResource( 4 )
 
-[sub_resource type="DynamicFont" id=5]
+[sub_resource type="DynamicFont" id=6]
 size = 24
 font_data = ExtResource( 4 )
 
-[sub_resource type="DynamicFont" id=6]
-size = 36
-font_data = ExtResource( 4 )
-
-[sub_resource type="Theme" id=7]
-default_font = SubResource( 6 )
-
-[sub_resource type="DynamicFont" id=8]
+[sub_resource type="DynamicFont" id=7]
 size = 40
-font_data = ExtResource( 1 )
+font_data = SubResource( 2 )
 
 [node name="Recipe" type="Control"]
 anchor_right = 1.0
@@ -57,6 +53,13 @@ __meta__ = {
 [node name="UI Recipe" type="Sprite" parent="."]
 position = Vector2( 368, 648 )
 texture = ExtResource( 5 )
+
+[node name="History" parent="." instance=ExtResource( 1 )]
+margin_left = 8.0
+margin_top = 304.0
+margin_right = 8.0
+margin_bottom = 304.0
+HistoryType = 0
 
 [node name="RecipePanel" type="Control" parent="."]
 margin_left = 72.0
@@ -83,7 +86,7 @@ margin_left = 56.0
 margin_top = -216.0
 margin_right = 536.0
 margin_bottom = -144.0
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 3 )
 align = 1
 __meta__ = {
 "_edit_use_anchors_": false
@@ -93,7 +96,7 @@ __meta__ = {
 margin_top = -8.0
 margin_right = 232.0
 margin_bottom = 56.0
-theme = SubResource( 4 )
+theme = SubResource( 5 )
 script = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -104,28 +107,8 @@ margin_left = 496.0
 margin_top = -48.0
 margin_right = 577.0
 margin_bottom = 32.0
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = SubResource( 6 )
 text = "Undo"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="RecipeHistory" type="Control" parent="."]
-margin_left = 80.0
-margin_top = 792.0
-margin_right = 664.0
-margin_bottom = 1128.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Text" type="RichTextLabel" parent="RecipeHistory"]
-margin_left = 24.0
-margin_top = -16.0
-margin_right = 560.0
-margin_bottom = 344.0
-theme = SubResource( 7 )
-scroll_following = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -135,7 +118,7 @@ margin_left = 608.0
 margin_top = 48.0
 margin_right = 688.0
 margin_bottom = 120.0
-custom_fonts/font = SubResource( 8 )
+custom_fonts/font = SubResource( 7 )
 text = "X"
 __meta__ = {
 "_edit_use_anchors_": false

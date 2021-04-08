@@ -8,11 +8,6 @@ var TaxesValue : float = 0
 var RecipeList : Array = []
 var ExpenseList : Array = []
 var TaxesList : Array = []
-var History : Array = []
-
-var RecipeAmount : Array = []
-var ExpenseAmount : Array = []
-var TaxesAmount : Array = []
 
 var CurrentDate
 
@@ -33,9 +28,6 @@ func Save_File():
 		"MyRecipeHistory" : RecipeList,
 		"MyExpenseHistory" : ExpenseList,
 		"MyTaxesHistory" : TaxesList,
-		"MyExpenseList" : ExpenseAmount,
-		"MyTaxesList" : TaxesAmount,
-		"MyHistory" : History,
 		"LastDate" : CurrentDate
 	}
 	var Save_File = File.new()
@@ -57,9 +49,6 @@ func Load_File():
 	RecipeList = File_data["MyRecipeHistory"]
 	ExpenseList = File_data["MyExpenseHistory"]
 	TaxesList = File_data["MyTaxesHistory"]
-	History = File_data["MyHistory"]
-	TaxesAmount = File_data["MyTaxesList"]
-	ExpenseAmount = File_data["MyExpenseList"]
 	Save_file.close()
 	
 func list_files_in_directory():
@@ -98,8 +87,5 @@ func Clear():
 	RecipeList = []
 	ExpenseList = []
 	TaxesList = []
-	History = []
-	ExpenseAmount = []
-	TaxesAmount = []
 	
 	print (Files)

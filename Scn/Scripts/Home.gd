@@ -2,30 +2,24 @@ extends Control
 
 var SoldAmount : Label
 var ExpenseAmount : LineEdit
-var History : RichTextLabel
+
+signal Done
 
 func _ready():
 	FileUser.Load_File()
-	
 	SoldAmount = get_node("Solde/Amount")
 	ExpenseAmount = get_node("Fast Expense/Amount")
-	History = get_node("History/Text")
-	
 	Functions.Balance()
 	SoldAmount.text = ""
 	SoldAmount.text = str(FileUser.BalanceValue) + "EUR"
+	emit_signal("Done")
 	
-	History.clear()
-	History.text = str(Functions.SetHistory())
-	
-
 func _on_Add_pressed():
-	Functions.Add_Expense("Dépense Rapide", ExpenseAmount.CheckText())
+	Functions.AddExpense("Dépense Rapide", ExpenseAmount.CheckText())
 	Functions.Balance()
 	SoldAmount.text = str(FileUser.BalanceValue) + "EUR"
 	ExpenseAmount.text = ""
-	History.clear()
-	History.text = str(Functions.SetHistory())
+	emit_signal("Done")
 
 func _on_RecipeScn_pressed():
 	var RecipeScnLoad = preload("res://Scn/Recipe.tscn")
@@ -36,9 +30,6 @@ func _on_RecipeScn_pressed():
 func Update():
 	print ("Emit")
 	SoldAmount.text = str(FileUser.BalanceValue) + "EUR"
-	
-	History.clear()
-	History.text = str(Functions.SetHistory())
 
 func _on_ExpenseScn_pressed():
 	var ScnLoad = preload("res://Scn/Expense.tscn")

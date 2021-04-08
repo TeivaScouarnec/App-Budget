@@ -1,37 +1,33 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=12 format=2]
 
-[ext_resource path="res://Font/ARIAL.TTF" type="DynamicFontData" id=1]
 [ext_resource path="res://Scn/Scripts/Home.gd" type="Script" id=2]
 [ext_resource path="res://Scn/Scripts/EditText.gd" type="Script" id=3]
 [ext_resource path="res://Scn/img/UI.png" type="Texture" id=4]
 [ext_resource path="res://Font/Comfortaa-Light.ttf" type="DynamicFontData" id=5]
+[ext_resource path="res://Scn/UI_Elements/History.tscn" type="PackedScene" id=6]
 
 [sub_resource type="DynamicFont" id=1]
 size = 55
 font_data = ExtResource( 5 )
 
-[sub_resource type="DynamicFont" id=2]
-size = 32
-font_data = ExtResource( 1 )
+[sub_resource type="DynamicFontData" id=2]
+font_path = "res://Font/ARIAL.TTF"
 
 [sub_resource type="DynamicFont" id=3]
-size = 33
-font_data = ExtResource( 1 )
+size = 32
+font_data = SubResource( 2 )
 
 [sub_resource type="DynamicFont" id=4]
-size = 36
-font_data = ExtResource( 5 )
+size = 33
+font_data = SubResource( 2 )
 
-[sub_resource type="Theme" id=5]
-default_font = SubResource( 4 )
+[sub_resource type="DynamicFont" id=5]
+size = 35
+font_data = SubResource( 2 )
 
 [sub_resource type="DynamicFont" id=6]
 size = 35
-font_data = ExtResource( 1 )
-
-[sub_resource type="DynamicFont" id=7]
-size = 35
-font_data = ExtResource( 1 )
+font_data = SubResource( 2 )
 
 [node name="Home" type="Control"]
 anchor_right = 1.0
@@ -48,6 +44,10 @@ texture = ExtResource( 4 )
 __meta__ = {
 "_edit_lock_": true
 }
+
+[node name="History" parent="." instance=ExtResource( 6 )]
+margin_top = -80.0
+margin_bottom = -80.0
 
 [node name="Solde" type="Control" parent="."]
 margin_left = 64.0
@@ -85,7 +85,7 @@ margin_left = 360.0
 margin_top = 96.0
 margin_right = 432.0
 margin_bottom = 160.0
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 3 )
 text = "+"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -96,29 +96,9 @@ margin_left = 40.0
 margin_top = 96.0
 margin_right = 248.0
 margin_bottom = 160.0
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 4 )
 max_length = 7
 script = ExtResource( 3 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="History" type="Control" parent="."]
-margin_left = 64.0
-margin_top = 448.0
-margin_right = 648.0
-margin_bottom = 824.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Text" type="RichTextLabel" parent="History"]
-margin_left = 16.0
-margin_top = -8.0
-margin_right = 568.0
-margin_bottom = 224.0
-theme = SubResource( 5 )
-scroll_following = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -128,7 +108,7 @@ margin_left = 56.0
 margin_top = 984.0
 margin_right = 304.0
 margin_bottom = 1072.0
-custom_fonts/font = SubResource( 6 )
+custom_fonts/font = SubResource( 5 )
 text = "Recette"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -139,7 +119,7 @@ margin_left = 408.0
 margin_top = 984.0
 margin_right = 656.0
 margin_bottom = 1072.0
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = SubResource( 6 )
 text = "Dépense"
 __meta__ = {
 "_edit_use_anchors_": false

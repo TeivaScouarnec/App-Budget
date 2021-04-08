@@ -1,6 +1,6 @@
 extends Node
 
-func Add_Recipe(name,amount): #Ajoute une recette
+func AddRecipe(name:String, amount:float): #Ajoute une recette
 	var RecipeName = name
 	var RecipeAmount = amount
 	var RecipeText = "Recette: " + str(RecipeName) + ", Montant: +" + str(RecipeAmount) + ", " + str(GetDateEnter())
@@ -9,7 +9,7 @@ func Add_Recipe(name,amount): #Ajoute une recette
 	FileUser.RecipeList.append(RecipeText)
 	FileUser.History.append(RecipeText)
 	
-func Remove_Recipe(): #déduit une recette
+func RemoveRecipe(): #déduit une recette
 	if FileUser.RecipeAmount == [] or FileUser.RecipeList == []:
 		print ("Non Exécuté")
 		return
@@ -20,7 +20,7 @@ func Remove_Recipe(): #déduit une recette
 	FileUser.RecipeValue -= float(LastAmount)
 	FileUser.RecipeAmount.pop_back()
 	
-func Add_Expense(name,amount): #ajoute une dépense
+func AddExpense(name:String,amount:float): #ajoute une dépense
 	var ExpenseName = name
 	var ExpenseAmount = amount
 	var ExpenseText = "Dépense: " + str(ExpenseName) + ", Montant: -" + str(ExpenseAmount) + ", " + str(GetDateEnter())
@@ -29,7 +29,7 @@ func Add_Expense(name,amount): #ajoute une dépense
 	FileUser.ExpenseList.append(ExpenseText)
 	FileUser.History.append(ExpenseText)
 	
-func Remove_Expense(): #réduit une dépense
+func RemoveExpense(): #réduit une dépense
 	if FileUser.ExpenseAmount == [] or FileUser.ExpenseList == []:
 		print ("Non Exécuté")
 		return
