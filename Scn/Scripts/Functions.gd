@@ -20,7 +20,7 @@ func AddRecipe(name:String, amount:float, day:int, month:int, year:int):
 func RemoveRecipe(): 
 	if !FileUser.Recipe == []:
 		FileUser.Recipe.pop_back()
-	print (FileUser.RecipeList)
+	print (FileUser.Recipe)
 
 #ajoute une dépense
 func AddExpense(name:String, amount:float, day:int, month:int, year:int):

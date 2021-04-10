@@ -40,4 +40,9 @@ func _on_Add_pressed():
 	emit_signal("Done")
 
 func _on_Undo_pressed():
-	pass # Replace with function body.
+	match NameType:
+		TYPES.RECIPE:
+			Functions.RemoveRecipe()
+		TYPES.EXPENSE:
+			Functions.RemoveExpense()
+	emit_signal("Done")
