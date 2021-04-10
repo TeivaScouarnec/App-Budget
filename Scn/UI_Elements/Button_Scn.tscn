@@ -2,7 +2,7 @@
 
 [ext_resource path="res://Font/Comfortaa-Regular.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://Scn/img/UI/Button/Button_scn.png" type="Texture" id=2]
-[ext_resource path="res://Scn/Scripts/EditText.gd" type="Script" id=3]
+[ext_resource path="res://Scn/Scripts/Elements/Scn/Scn_Amount.gd" type="Script" id=3]
 [ext_resource path="res://Scn/Scripts/Elements/Button_Scn.gd" type="Script" id=4]
 [ext_resource path="res://Scn/UI_Elements/TextLine.tres" type="DynamicFont" id=5]
 [ext_resource path="res://Scn/UI_Elements/Button_Scn.tres" type="Theme" id=6]
@@ -28,6 +28,7 @@ script = ExtResource( 4 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+NameType = 0
 
 [node name="Img" type="AnimatedSprite" parent="."]
 position = Vector2( 360, 656 )
@@ -47,7 +48,6 @@ __meta__ = {
 margin_right = 607.0
 margin_bottom = 68.0
 custom_fonts/font = SubResource( 2 )
-text = "Nom de la dépense"
 align = 1
 __meta__ = {
 "_edit_use_anchors_": false
@@ -80,16 +80,19 @@ margin_right = 256.0
 margin_bottom = 712.0
 theme = ExtResource( 6 )
 custom_fonts/font = ExtResource( 5 )
-script = ExtResource( 3 )
+max_length = 2
 
-[node name="Mouth" type="LineEdit" parent="Date"]
+[node name="Month" type="LineEdit" parent="Date"]
 margin_left = 270.0
 margin_top = 640.0
 margin_right = 454.0
 margin_bottom = 712.0
 theme = ExtResource( 6 )
 custom_fonts/font = ExtResource( 5 )
-script = ExtResource( 3 )
+max_length = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Year" type="LineEdit" parent="Date"]
 margin_left = 465.0
@@ -98,11 +101,12 @@ margin_right = 649.0
 margin_bottom = 712.0
 theme = ExtResource( 6 )
 custom_fonts/font = ExtResource( 5 )
-script = ExtResource( 3 )
+max_length = 4
 
 [node name="Amount" type="Control" parent="."]
 margin_right = 40.0
 margin_bottom = 40.0
+script = ExtResource( 3 )
 
 [node name="Value" type="LineEdit" parent="Amount"]
 margin_left = 58.0
@@ -139,3 +143,5 @@ __meta__ = {
 "_edit_lock_": true,
 "_edit_use_anchors_": false
 }
+[connection signal="pressed" from="Button/Add" to="." method="_on_Add_pressed"]
+[connection signal="pressed" from="Button/Undo" to="." method="_on_Undo_pressed"]

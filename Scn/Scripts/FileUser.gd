@@ -1,18 +1,18 @@
 extends Node
 
-var RecipeValue : float = 0
-var ExpenseValue : float = 0
-var BalanceValue : float = 0
-var TaxesValue : float = 0
+var Recipe : Array = []
+var Expense : Array = []
+var Taxes : Array = []
 
-var RecipeList : Array = []
-var ExpenseList : Array = []
-var TaxesList : Array = []
-
-var CurrentDate
+var CurrentDay
+var CurrentMonth
+var CurrentYear
 
 func _ready():
-	CurrentDate = Functions.GetDateEnter()
+	CurrentDay = Functions.GetDateDay()
+	CurrentMonth = Functions.GetDateMonth()
+	CurrentYear = Functions.GetDateYear()
+	
 
 func Save_File():
 	var dir = Directory.new()
@@ -22,13 +22,9 @@ func Save_File():
 	
 	var Save_dict = {
 		"FileName" : get_filename(),
-		"MyRecipeAmount" : RecipeValue,
-		"MyExpenseAmount" : ExpenseValue,
-		"MyTaxesAmount" : TaxesValue,
-		"MyRecipeHistory" : RecipeList,
-		"MyExpenseHistory" : ExpenseList,
-		"MyTaxesHistory" : TaxesList,
-		"LastDate" : CurrentDate
+		"MyRecipe" : Recipe,
+		"MyExpense" : Expense,
+		"MyTaxes" : Taxes,
 	}
 	var Save_File = File.new()
 	Save_File.open("user://GdBugdet/UserSave.save",File.WRITE)
@@ -43,12 +39,9 @@ func Load_File():
 	Save_file.open("user://GdBugdet/UserSave.save",File.READ)
 	var File_data = parse_json(Save_file.get_line())
 	var New_Object = load(File_data["FileName"])
-	RecipeValue = File_data["MyRecipeAmount"]
-	ExpenseValue = File_data["MyExpenseAmount"]
-	TaxesValue = File_data["MyTaxesAmount"]
-	RecipeList = File_data["MyRecipeHistory"]
-	ExpenseList = File_data["MyExpenseHistory"]
-	TaxesList = File_data["MyTaxesHistory"]
+	Recipe = File_data["MyRecipe"]
+	Expense = File_data["MyExpense"]
+	Taxes = File_data["MyTaxes"]
 	Save_file.close()
 	
 func list_files_in_directory():
@@ -79,13 +72,8 @@ func Clear():
 			Dir.remove("user://GdBugdet/" + str(file))
 			print ("Delete")
 
-		
-	RecipeValue = 0
-	ExpenseValue = 0
-	BalanceValue  = 0
-	TaxesValue = 0
-	RecipeList = []
-	ExpenseList = []
-	TaxesList = []
+	Recipe = []
+	Expense = []
+	Taxes = []
 	
 	print (Files)

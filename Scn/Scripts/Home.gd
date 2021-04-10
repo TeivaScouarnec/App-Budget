@@ -1,39 +1,40 @@
 extends Control
 
-var SoldAmount : Label
+var CurrentSoldAmount : Label
+var ForecastSoldAmount : Label
 var ExpenseAmount : LineEdit
 
 signal Done
 
 func _ready():
 	FileUser.Load_File()
-	SoldAmount = get_node("Solde/Amount")
-	ExpenseAmount = get_node("Fast Expense/Amount")
-	Functions.Balance()
-	SoldAmount.text = ""
-	SoldAmount.text = str(FileUser.BalanceValue) + "EUR"
+	CurrentSoldAmount = get_node("Solde/CurrentAmount")
+	ForecastSoldAmount = get_node("Solde/ForecastAmount")
+	ForecastSoldAmount.text = str(Functions.ForecastBalance()) + "EUR"
+	CurrentSoldAmount.text = str(Functions.Balance()) + "EUR"
 	emit_signal("Done")
 	
 func _on_Add_pressed():
-	Functions.AddExpense("Dépense Rapide", ExpenseAmount.CheckText())
-	Functions.Balance()
-	SoldAmount.text = str(FileUser.BalanceValue) + "EUR"
-	ExpenseAmount.text = ""
-	emit_signal("Done")
+	pass
 
 func _on_RecipeScn_pressed():
-	var RecipeScnLoad = preload("res://Scn/Recipe.tscn")
-	var RecipeScnNew = RecipeScnLoad.instance()
-	add_child(RecipeScnNew)
-	RecipeScnNew.connect("Done",self,"Update")
+	var ScnLoad = preload("res://Scn/Scn_default.tscn")
+	var ScnNew = ScnLoad.instance()
+	ScnNew.Scn = ScnNew.TYPES.RECIPE
+	add_child(ScnNew)
+	ScnNew.connect("Done",self,"Update")
 	
 func Update():
 	print ("Emit")
-	SoldAmount.text = str(FileUser.BalanceValue) + "EUR"
+	ForecastSoldAmount.text = str(Functions.ForecastBalance()) + "EUR"
+	CurrentSoldAmount.text = str(Functions.Balance()) + "EUR"
+	emit_signal("Done")
+	FileUser.Save_File()
 
 func _on_ExpenseScn_pressed():
-	var ScnLoad = preload("res://Scn/Expense.tscn")
+	var ScnLoad = preload("res://Scn/Scn_default.tscn")
 	var ScnNew = ScnLoad.instance()
+	ScnNew.Scn = ScnNew.TYPES.EXPENSE
 	add_child(ScnNew)
 	ScnNew.connect("Done",self,"Update")
 

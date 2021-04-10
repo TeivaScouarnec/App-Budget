@@ -1,18 +1,20 @@
 extends Control
 
 enum TYPES {RECIPE, EXPENSE, NULL}
-export (TYPES) var NameType = TYPES.NULL
 
 var Title : Label
 var LineEditText: LineEdit
+var NodeParent
 
 func _ready():
 	LineEditText = get_node("NameText")
 	Title = get_node("Title")
+	NodeParent = get_parent()
 	NameUpdate()
 	
 func NameUpdate():
-	match NameType:
+	var ParentType = NodeParent.NameType
+	match ParentType:
 		TYPES.RECIPE:
 			Title.text = "Nom de la recette"
 		TYPES.EXPENSE:
@@ -20,8 +22,10 @@ func NameUpdate():
 		TYPES.NULL:
 			Title.text = ""
 
-func NameText():
+func GetName():
 	if !LineEditText.text == "":
-		return (LineEditText.text)
+		return (str(LineEditText.text))
 		LineEditText.text = ""
+	else:
+		return
 

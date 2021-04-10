@@ -1,25 +1,61 @@
 extends Control
 
-var Day
-var Mouth
-var Year
+var Day : LineEdit
+var Month : LineEdit
+var Year : LineEdit
 
 func _ready():
-	Day = get_node("Day").text
-	Mouth = get_node("Mouth").text
-	Year = get_node("Year").text
+	Day = get_node("Day")
+	Month = get_node("Month")
+	Year = get_node("Year")
 
-func GetDate():
-	if !Day == "":
-		OnlyDigits(Day)
-	if !Mouth == "":
-		OnlyDigits(Mouth)
-	if !Year == "":
-		OnlyDigits(Year)
+func GetDay():
+	var day
 	
-	var Date = ("")
+	if !Day.text == "":
+		Day.text = OnlyDigits(Day.text)
+		day = Day.text.to_int()
+	else:
+		day = Functions.GetDateDay()
+	
+	if day > 32:
+		return
+	
+	print ("Jour: " + str(day))
+	return (day)
+	Day.text = ""
+	
+func GetMonth():
+	var month
+	
+	if !Month.text == "":
+		Month.text = OnlyDigits(Month.text)
+		month = Month.text.to_int()
+	else:
+		month = Functions.GetDateMonth()
+		
+	if month > 12:
+		return
+		
+	print ("Mois: " + str(month))
+	return (month)
+	Month.text = ""
+	
+func GetYear():
+	var year
+	
+	if !Year.text == "":
+		Year.text = OnlyDigits(Year.text)
+		year = Year.text.to_int()
+	else:
+		year = Functions.GetDateYear()
+	
+	print ("Année: " + str(year))
+	return (year)
+	Year.text = ""
+
 func OnlyDigits(amount : String):
 	for e in amount:
-		if "0123456789,.".find(e) == -1:
+		if "0123456789".find(e) == -1:
 			return ""
 	return amount
