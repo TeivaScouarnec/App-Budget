@@ -16,6 +16,7 @@ func _ready():
 
 func Update():
 	NameNode.NameUpdate()
+	AmountNode.AmountUpdate()
 	
 func _on_Add_pressed():
 	var Name = NameNode.GetName()

@@ -16,9 +16,9 @@ func NameUpdate():
 	var ParentType = NodeParent.NameType
 	match ParentType:
 		TYPES.RECIPE:
-			Title.text = "Nom de la recette"
+			Title.text = "Nom de la recette (*)"
 		TYPES.EXPENSE:
-			Title.text = "Nom de la dépense"
+			Title.text = "Nom de la dépense (*)"
 		TYPES.NULL:
 			Title.text = ""
 
@@ -28,4 +28,3 @@ func GetName():
 		LineEditText.text = ""
 	else:
 		return
-

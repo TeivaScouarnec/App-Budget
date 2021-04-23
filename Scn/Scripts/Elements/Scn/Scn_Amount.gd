@@ -23,10 +23,12 @@ func GetAmount():
 		return
 		
 	print ("Montant: " + str(amount))
-	Value.text = ""
 	
 func OnlyDigits(amount : String):
 	for e in amount:
 		if "0123456789,.".find(e) == -1:
 			return ""
 	return amount
+
+func AmountUpdate():
+	Value.text = ""

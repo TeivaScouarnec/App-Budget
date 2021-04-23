@@ -1,6 +1,5 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://Scn/UI_Elements/History.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scn/Scripts/Elements/Scn/Scn_default.gd" type="Script" id=2]
 [ext_resource path="res://Scn/UI_Elements/Button_Scn.tscn" type="PackedScene" id=3]
 
@@ -30,16 +29,11 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="History" parent="." instance=ExtResource( 1 )]
-margin_left = -8.0
-margin_top = 360.0
-margin_right = -8.0
-margin_bottom = 360.0
-HistoryType = 1
-
 [node name="Button_Name" parent="." instance=ExtResource( 3 )]
-margin_top = -216.0
-margin_bottom = -216.0
+margin_left = -3.36377
+margin_top = 9.36023
+margin_right = -3.36377
+margin_bottom = 9.36023
 NameType = 1
 
 [node name="Close" type="Button" parent="."]

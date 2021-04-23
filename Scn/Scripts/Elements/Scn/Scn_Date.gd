@@ -8,6 +8,10 @@ func _ready():
 	Day = get_node("Day")
 	Month = get_node("Month")
 	Year = get_node("Year")
+	
+	Day.text = str(GetDay())
+	Month.text = str(GetMonth())
+	Year.text = str(GetYear())
 
 func GetDay():
 	var day
@@ -23,7 +27,7 @@ func GetDay():
 	
 	print ("Jour: " + str(day))
 	return (day)
-	Day.text = ""
+	Day.text = "Jour"
 	
 func GetMonth():
 	var month
@@ -39,7 +43,7 @@ func GetMonth():
 		
 	print ("Mois: " + str(month))
 	return (month)
-	Month.text = ""
+	Month.text = "Mois"
 	
 func GetYear():
 	var year
@@ -52,10 +56,11 @@ func GetYear():
 	
 	print ("Année: " + str(year))
 	return (year)
-	Year.text = ""
+	Year.text = "Année"
 
 func OnlyDigits(amount : String):
 	for e in amount:
 		if "0123456789".find(e) == -1:
 			return ""
 	return amount
+

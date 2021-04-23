@@ -4,20 +4,20 @@
 [ext_resource path="res://Scn/img/UI About.png" type="Texture" id=3]
 [ext_resource path="res://Font/Comfortaa-Regular.ttf" type="DynamicFontData" id=4]
 
-[sub_resource type="DynamicFont" id=9]
+[sub_resource type="DynamicFont" id=1]
 size = 32
 font_data = ExtResource( 4 )
 
-[sub_resource type="DynamicFontData" id=8]
+[sub_resource type="DynamicFontData" id=2]
 font_path = "res://Font/ARIAL.TTF"
 
-[sub_resource type="DynamicFont" id=10]
+[sub_resource type="DynamicFont" id=3]
 size = 35
-font_data = SubResource( 8 )
+font_data = SubResource( 2 )
 
-[sub_resource type="DynamicFont" id=11]
+[sub_resource type="DynamicFont" id=4]
 size = 40
-font_data = SubResource( 8 )
+font_data = SubResource( 2 )
 
 [node name="About" type="Control"]
 anchor_right = 1.0
@@ -45,7 +45,7 @@ margin_left = 56.0
 margin_top = 592.0
 margin_right = 648.0
 margin_bottom = 664.0
-custom_fonts/font = SubResource( 9 )
+custom_fonts/font = SubResource( 1 )
 text = "Effacer la sauvegarde"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -56,7 +56,7 @@ margin_left = 56.0
 margin_top = 1192.0
 margin_right = 266.0
 margin_bottom = 1232.0
-custom_fonts/font = SubResource( 10 )
+custom_fonts/font = SubResource( 3 )
 text = "Ver Alpha 0.2"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -67,7 +67,7 @@ margin_left = 608.0
 margin_top = 32.0
 margin_right = 672.0
 margin_bottom = 96.0
-custom_fonts/font = SubResource( 11 )
+custom_fonts/font = SubResource( 4 )
 text = "X"
 __meta__ = {
 "_edit_use_anchors_": false

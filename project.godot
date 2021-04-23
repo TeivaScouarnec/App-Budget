@@ -16,7 +16,7 @@ _global_script_class_icons={
 [application]
 
 config/name="GDBugdet"
-run/main_scene="res://Scn/Home.tscn"
+run/main_scene="res://Scn/Scn_Home.tscn"
 config/icon="res://Logo 192x.png"
 
 [autoload]
