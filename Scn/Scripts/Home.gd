@@ -38,7 +38,7 @@ func _on_ExpenseScn_pressed():
 	ScnNew.connect("Done",self,"Update")
 
 func _on_About_pressed():
-	var ScnLoad = preload("res://Scn/About.tscn")
+	var ScnLoad = preload("res://Scn/Scn_About.tscn")
 	var ScnNew = ScnLoad.instance()
 	add_child(ScnNew)
 	ScnNew.connect("Done",self,"Update")
